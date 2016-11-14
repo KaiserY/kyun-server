@@ -18,10 +18,10 @@ public class App extends AsyncConfigurerSupport {
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(64);
-        executor.setMaxPoolSize(64);
-        executor.setQueueCapacity(1000000);
-        executor.setThreadNamePrefix("mongo-thread-");
+        executor.setCorePoolSize(4);
+        executor.setMaxPoolSize(4);
+        executor.setQueueCapacity(1000);
+        executor.setThreadNamePrefix("async-thread-");
         executor.initialize();
         return executor;
     }

@@ -1,0 +1,18 @@
+# undertow
+server:
+    undertow:
+        accesslog:
+            dir: target/logs/undertow
+            enabled: true
+            pattern: common
+# multipart
+multipart:
+    maxFileSize: 2Mb
+# debug
+debug: false
+# mongo
+spring:
+    data:
+        mongodb:
+#            uri: mongodb://root:12345678@localhost:27017/fs?authSource=admin
+            uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin

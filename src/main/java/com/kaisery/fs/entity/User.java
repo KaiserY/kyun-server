@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Document
 public class User {
@@ -14,6 +15,10 @@ public class User {
     private String userName;
 
     private String password;
+
+    private List<Role> roles;
+
+    private List<Permission> permissions;
 
     private String token;
 
@@ -77,5 +82,21 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 }

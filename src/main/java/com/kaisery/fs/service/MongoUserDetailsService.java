@@ -1,32 +1,26 @@
-package com.kaisery.fs.security;
+package com.kaisery.fs.service;
 
 import com.kaisery.fs.entity.User;
 import com.kaisery.fs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class MongoDBAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+public class MongoUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-    }
-
-    @Override
-    protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-        User user = userRepository.findByUserName(username);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User [%s]  was not found", username)));
 
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<GrantedAuthority>();
         grantedAuthorityList.addAll(user.getRoles());

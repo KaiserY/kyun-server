@@ -7,13 +7,12 @@ public enum Role implements GrantedAuthority {
     ROLE_ADMIN("ROLE_ADMIN", "admin"),
     ROLE_USER("ROLE_USER", "user");
 
+    private String name;
+    private String description;
+
     Role(String name, String description) {
         this.name = name;
     }
-
-    private String name;
-
-    private String description;
 
     public String getName() {
         return name;

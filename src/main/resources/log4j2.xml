@@ -30,7 +30,7 @@
         <Root level="info" additivity="false">
             <appender-ref ref="trace-log" level="info"/>
             <appender-ref ref="error-log" level="error"/>
-            <appender-ref ref="console-log" level="info"/>
+            <appender-ref ref="console-log" level="debug"/>
         </Root>
     </Loggers>
 </Configuration>

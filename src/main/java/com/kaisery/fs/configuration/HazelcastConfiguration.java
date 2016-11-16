@@ -12,7 +12,7 @@ import java.util.Properties;
 import static java.util.Collections.singletonList;
 
 @Configuration
-public class HazelcastConfig {
+public class HazelcastConfiguration {
 
     @Bean
     public Config config() {

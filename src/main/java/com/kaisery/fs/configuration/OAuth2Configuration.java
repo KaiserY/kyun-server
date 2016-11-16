@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class OAuth2Config {
+public class OAuth2Configuration {
 
     @Autowired
     OAuth2ClientContext oauth2ClientContext;

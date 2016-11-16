@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,14 @@ public class MongoUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User [%s]  was not found", username)));
 
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<GrantedAuthority>();
-        grantedAuthorityList.addAll(user.getRoles());
-        grantedAuthorityList.addAll(user.getPermissions());
+
+        if (!CollectionUtils.isEmpty(user.getRoles())) {
+            grantedAuthorityList.addAll(user.getRoles());
+        }
+
+        if (!CollectionUtils.isEmpty(user.getPermissions())) {
+            grantedAuthorityList.addAll(user.getPermissions());
+        }
 
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorityList);
     }

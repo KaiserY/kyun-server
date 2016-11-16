@@ -14,7 +14,6 @@ import java.util.concurrent.Executor;
 @SpringBootApplication
 @EnableOAuth2Client
 @EnableAsync
-@EnableAuthorizationServer
 @Order(6)
 public class App extends AsyncConfigurerSupport {
     public static void main(String[] args) {

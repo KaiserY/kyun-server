@@ -5,7 +5,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
 
 @Document
 public class User {
@@ -18,9 +19,9 @@ public class User {
 
     private String password;
 
-    private List<Role> roles;
+    private Set<Role> roles = Collections.emptySet();
 
-    private List<Permission> permissions;
+    private Set<Permission> permissions = Collections.emptySet();
 
     private String token;
 
@@ -86,19 +87,19 @@ public class User {
         this.id = id;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
-    public List<Permission> getPermissions() {
+    public Set<Permission> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<Permission> permissions) {
+    public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
     }
 }

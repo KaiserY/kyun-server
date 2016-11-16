@@ -1,8 +1,6 @@
 package com.kaisery.fs.controller;
 
 import com.kaisery.fs.entity.User;
-import com.kaisery.fs.repository.UserRepository;
-import com.kaisery.fs.service.MongoUserDetailsService;
 import com.kaisery.fs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -10,24 +8,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.provider.OAuth2Request;
-import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
-import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @RestController
 public class UserController {

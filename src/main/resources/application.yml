@@ -18,16 +18,8 @@ spring:
   data:
     mongodb:
 #      uri: mongodb://root:12345678@localhost:27017/fs?authSource=admin
-      uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin
-#      uri: mongodb://localhost:27017/fs
-
-#security:
-#  oauth2:
-#    client:
-#      client-id: acme
-#      client-secret: acmesecret
-#      scope: read,write
-#      auto-approve-scopes: '.*'
+#      uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin
+      uri: mongodb://localhost:27017/fs
 
 facebook:
   client:

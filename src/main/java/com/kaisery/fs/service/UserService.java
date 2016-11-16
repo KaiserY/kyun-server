@@ -22,7 +22,7 @@ public class UserService {
     public User registerUser(User user) throws Exception {
 
         if (CollectionUtils.isEmpty(user.getRoles())) {
-            user.setRoles(Collections.singletonList(Role.ROLE_USER));
+            user.setRoles(Collections.singleton(Role.ROLE_USER));
         }
 
         return userRepository.save(user);

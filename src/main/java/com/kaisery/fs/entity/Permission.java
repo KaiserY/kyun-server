@@ -3,7 +3,7 @@ package com.kaisery.fs.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Permission implements GrantedAuthority {
-    ALL("ALL", "all");
+    PERMISSION_ALL("PERMISSION_ALL", "all");
 
     private String name;
     private String description;

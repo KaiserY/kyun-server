@@ -8,10 +8,12 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
+import org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Service
-public class MongoClientDetailsService implements ClientDetailsService {
+public class MongoClientDetailsService extends InMemoryClientDetailsService {
 
     @Autowired
     private OAuth2ClientRepository oAuth2ClientRepository;
@@ -28,7 +30,11 @@ public class MongoClientDetailsService implements ClientDetailsService {
         baseClientDetails.setAdditionalInformation(oAuth2Client.getAdditionalInformation());
         baseClientDetails.setAuthorities(oAuth2Client.getAuthorities());
         baseClientDetails.setAuthorizedGrantTypes(oAuth2Client.getAuthorizedGrantTypes());
-        baseClientDetails.setAutoApproveScopes(oAuth2Client.getAutoApproveScopes());
+
+        if (!CollectionUtils.isEmpty(oAuth2Client.getAuthorities())) {
+            baseClientDetails.setAutoApproveScopes(oAuth2Client.getAutoApproveScopes());
+        }
+
         baseClientDetails.setRegisteredRedirectUri(oAuth2Client.getRegisteredRedirectUris());
         baseClientDetails.setScope(oAuth2Client.getScope());
         baseClientDetails.setResourceIds(oAuth2Client.getResourceIds());

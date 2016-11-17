@@ -24,7 +24,7 @@ public class OAuth2Client {
 
     private Set<String> authorizedGrantTypes = Collections.emptySet();
 
-    private List<GrantedAuthority> authorities = Collections.emptyList();
+    private Set<Authority> authorities = Collections.emptySet();
 
     private Set<String> registeredRedirectUris;
 
@@ -124,11 +124,11 @@ public class OAuth2Client {
         this.additionalInformation = additionalInformation;
     }
 
-    public List<GrantedAuthority> getAuthorities() {
+    public Set<Authority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(List<GrantedAuthority> authorities) {
+    public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
 }

@@ -35,7 +35,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 //            .secret("acmesecret")
 //            .authorizedGrantTypes("authorization_code", "refresh_token",
 //                "password").scopes("read", "write");
-        clients.withClientDetails(mongoClientDetailsService);
+        clients.setBuilder(new MongoClientDetailsServiceBuilder());
     }
 
     @Override

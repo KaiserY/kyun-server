@@ -19,9 +19,7 @@ public class User {
 
     private String password;
 
-    private Set<Role> roles = Collections.emptySet();
-
-    private Set<Permission> permissions = Collections.emptySet();
+    private Set<Authority> authorities = Collections.emptySet();
 
     private String token;
 
@@ -29,7 +27,13 @@ public class User {
 
     private LocalDateTime createdTime;
 
-    private FolderBrief rootFolder;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;
@@ -45,6 +49,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     public String getToken() {
@@ -69,37 +81,5 @@ public class User {
 
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
-    }
-
-    public FolderBrief getRootFolder() {
-        return rootFolder;
-    }
-
-    public void setRootFolder(FolderBrief rootFolder) {
-        this.rootFolder = rootFolder;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(Set<Permission> permissions) {
-        this.permissions = permissions;
     }
 }

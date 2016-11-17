@@ -1,6 +1,8 @@
 package com.kaisery.fs.runner;
 
-import com.kaisery.fs.entity.*;
+import com.kaisery.fs.entity.Authority;
+import com.kaisery.fs.entity.OAuth2Client;
+import com.kaisery.fs.entity.User;
 import com.kaisery.fs.repository.OAuth2ClientRepository;
 import com.kaisery.fs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static java.util.Collections.singleton;
-import static java.util.Collections.singletonList;
 
 @Component
 public class MongoRunner implements CommandLineRunner {

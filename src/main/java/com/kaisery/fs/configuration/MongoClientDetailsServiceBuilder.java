@@ -5,15 +5,9 @@ import com.kaisery.fs.entity.OAuth2Client;
 import com.kaisery.fs.repository.OAuth2ClientRepository;
 import com.kaisery.fs.service.MongoClientDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.BaseClientDetails;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 
 public class MongoClientDetailsServiceBuilder extends InMemoryClientDetailsServiceBuilder {
 
@@ -31,7 +25,7 @@ public class MongoClientDetailsServiceBuilder extends InMemoryClientDetailsServi
         oAuth2Client.setAccessTokenValiditySeconds(value.getAccessTokenValiditySeconds());
         oAuth2Client.setAdditionalInformation(value.getAdditionalInformation());
 
-        value.getAuthorities().stream().forEach(grantedAuthority -> {
+        value.getAuthorities().forEach(grantedAuthority -> {
             oAuth2Client.getAuthorities().add(Authority.valueOf(grantedAuthority.getAuthority()));
         });
 
@@ -45,7 +39,6 @@ public class MongoClientDetailsServiceBuilder extends InMemoryClientDetailsServi
 
     @Override
     protected ClientDetailsService performBuild() {
-        MongoClientDetailsService mongoClientDetailsService = new MongoClientDetailsService();
-        return mongoClientDetailsService;
+        return new MongoClientDetailsService();
     }
 }

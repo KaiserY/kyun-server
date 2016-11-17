@@ -15,6 +15,10 @@ debug: true
 
 # mongo
 spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   data:
     mongodb:
 #      uri: mongodb://root:12345678@localhost:27017/fs?authSource=admin
@@ -46,3 +50,7 @@ github:
 logging:
   level:
     org.springframework.security: DEBUG
+
+oauth2:
+  authorizationServer:
+    uri: http://localhost:8080

@@ -9,7 +9,11 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableAuthorizationServer
@@ -20,6 +24,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired
     private MongoClientDetailsService mongoClientDetailsService;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean DefaultAccessTokenConverter defaultAccessTokenConverter() {
+        return new DefaultAccessTokenConverter();
+    }
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
@@ -41,7 +52,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-            .authenticationManager(authenticationManager);
-//            .accessTokenConverter(jwtAccessTokenConverter());
+            .authenticationManager(authenticationManager)
+            .tokenStore(new JdbcTokenStore(dataSource));
     }
 }

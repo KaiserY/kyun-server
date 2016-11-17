@@ -1,7 +1,6 @@
 package com.kaisery.fs.service;
 
 import com.kaisery.fs.entity.Authority;
-import com.kaisery.fs.entity.Role;
 import com.kaisery.fs.entity.User;
 import com.kaisery.fs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

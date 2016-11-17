@@ -4,6 +4,7 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.web.WebFilter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +13,7 @@ import java.util.Properties;
 import static java.util.Collections.singletonList;
 
 @Configuration
+@ConditionalOnExpression("false")
 public class HazelcastConfiguration {
 
     @Bean

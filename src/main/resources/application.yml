@@ -22,8 +22,11 @@ spring:
   data:
     mongodb:
 #      uri: mongodb://root:12345678@localhost:27017/fs?authSource=admin
-      uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin
-#      uri: mongodb://localhost:27017/fs
+#      uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin
+      uri: mongodb://localhost:27017/fs
+
+management:
+  context-path: /manage
 
 facebook:
   client:

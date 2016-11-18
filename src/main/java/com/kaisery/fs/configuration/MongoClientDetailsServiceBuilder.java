@@ -24,11 +24,7 @@ public class MongoClientDetailsServiceBuilder extends InMemoryClientDetailsServi
         oAuth2Client.setRefreshTokenValiditySeconds(value.getRefreshTokenValiditySeconds());
         oAuth2Client.setAccessTokenValiditySeconds(value.getAccessTokenValiditySeconds());
         oAuth2Client.setAdditionalInformation(value.getAdditionalInformation());
-
-        value.getAuthorities().forEach(grantedAuthority -> {
-            oAuth2Client.getAuthorities().add(Authority.valueOf(grantedAuthority.getAuthority()));
-        });
-
+        oAuth2Client.setAuthorities(value.getAuthorities());
         oAuth2Client.setAuthorizedGrantTypes(value.getAuthorizedGrantTypes());
         oAuth2Client.setRegisteredRedirectUris(value.getRegisteredRedirectUri());
         oAuth2Client.setScope(value.getScope());

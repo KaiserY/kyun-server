@@ -1,6 +1,7 @@
 package com.kaisery.fs.configuration;
 
 import org.h2.server.web.WebServlet;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
+@ConditionalOnExpression("false")
 public class H2DataSourceConfiguration {
 
     @Bean

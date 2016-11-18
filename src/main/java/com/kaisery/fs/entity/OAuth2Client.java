@@ -3,14 +3,13 @@ package com.kaisery.fs.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.provider.ClientDetails;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Document
-public class OAuth2Client {
+public class OAuth2Client implements ClientDetails {
 
     @Id
     private String id;
@@ -26,7 +25,7 @@ public class OAuth2Client {
 
     private Set<String> authorizedGrantTypes = Collections.emptySet();
 
-    private Set<Authority> authorities = Collections.emptySet();
+    private Collection<GrantedAuthority> authorities = Collections.emptySet();
 
     private Set<String> registeredRedirectUris;
 
@@ -58,6 +57,11 @@ public class OAuth2Client {
         return clientSecret;
     }
 
+    @Override
+    public boolean isScoped() {
+        return false;
+    }
+
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
     }
@@ -74,12 +78,22 @@ public class OAuth2Client {
         return resourceIds;
     }
 
+    @Override
+    public boolean isSecretRequired() {
+        return false;
+    }
+
     public void setResourceIds(Set<String> resourceIds) {
         this.resourceIds = resourceIds;
     }
 
     public Set<String> getAuthorizedGrantTypes() {
         return authorizedGrantTypes;
+    }
+
+    @Override
+    public Set<String> getRegisteredRedirectUri() {
+        return null;
     }
 
     public void setAuthorizedGrantTypes(Set<String> authorizedGrantTypes) {
@@ -114,6 +128,11 @@ public class OAuth2Client {
         return refreshTokenValiditySeconds;
     }
 
+    @Override
+    public boolean isAutoApprove(String scope) {
+        return false;
+    }
+
     public void setRefreshTokenValiditySeconds(Integer refreshTokenValiditySeconds) {
         this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
     }
@@ -126,11 +145,12 @@ public class OAuth2Client {
         this.additionalInformation = additionalInformation;
     }
 
-    public Set<Authority> getAuthorities() {
+    @Override
+    public Collection<GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
+    public void setAuthorities(Collection<GrantedAuthority> authorities) {
         this.authorities = authorities;
     }
 }

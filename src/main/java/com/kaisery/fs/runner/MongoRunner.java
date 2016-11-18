@@ -30,14 +30,14 @@ public class MongoRunner implements CommandLineRunner {
         oAuth2ClientRepository.deleteAll();
 
         User admin = new User();
-        admin.setUserName("admin");
+        admin.setUsername("admin");
         admin.setPassword("12345678");
         admin.setAuthorities(singleton(Authority.ROLE_ADMIN));
 
         userRepository.save(admin);
 
         User user = new User();
-        user.setUserName("user");
+        user.setUsername("user");
         user.setPassword("12345678");
         user.setAuthorities(singleton(Authority.ROLE_USER));
 
@@ -46,7 +46,7 @@ public class MongoRunner implements CommandLineRunner {
         OAuth2Client oAuth2Client = new OAuth2Client();
         oAuth2Client.setClientId("acme");
         oAuth2Client.setClientSecret("acmesecret");
-        oAuth2Client.setAccessTokenValiditySeconds(600);
+        oAuth2Client.setAccessTokenValiditySeconds(60000);
         oAuth2Client.setRefreshTokenValiditySeconds(60000);
         oAuth2Client.setScope(new HashSet<String>(Arrays.asList("read", "write")));
         oAuth2Client.setAuthorizedGrantTypes(new HashSet<String>(Arrays.asList("authorization_code", "refresh_token", "password")));

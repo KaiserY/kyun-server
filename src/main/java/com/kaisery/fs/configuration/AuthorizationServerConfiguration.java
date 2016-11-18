@@ -25,13 +25,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private MongoClientDetailsService mongoClientDetailsService;
 
-    @Autowired
-    private DataSource dataSource;
-
-    @Bean DefaultAccessTokenConverter defaultAccessTokenConverter() {
-        return new DefaultAccessTokenConverter();
-    }
-
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
@@ -52,7 +45,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-            .authenticationManager(authenticationManager)
-            .tokenStore(new JdbcTokenStore(dataSource));
+            .authenticationManager(authenticationManager);
+//            .accessTokenConverter(jwtAccessTokenConverter());
     }
 }

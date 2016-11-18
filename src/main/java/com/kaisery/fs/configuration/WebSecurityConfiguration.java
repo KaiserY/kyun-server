@@ -11,13 +11,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+@Order(6)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -33,7 +36,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.antMatcher("/**")
             .authorizeRequests()
             .antMatchers("/", "/registration**", "/login**")
             .permitAll()
@@ -46,12 +49,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .logout()
             .logoutSuccessUrl("/")
             .permitAll()
-//            .and()
-//            .csrf()
-//            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
             .and()
-            .addFilterBefore(oAuth2Configuration.ssoFilter(), BasicAuthenticationFilter.class)
-            .csrf().disable();
+            .csrf()
+            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            .and()
+            .addFilterBefore(oAuth2Configuration.ssoFilter(), BasicAuthenticationFilter.class);
+//            .csrf().disable();
     }
 
     @Autowired

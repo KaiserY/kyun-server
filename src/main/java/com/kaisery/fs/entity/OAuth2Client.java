@@ -57,13 +57,13 @@ public class OAuth2Client implements ClientDetails {
         return clientSecret;
     }
 
+    public void setClientSecret(String clientSecret) {
+        this.clientSecret = clientSecret;
+    }
+
     @Override
     public boolean isScoped() {
         return false;
-    }
-
-    public void setClientSecret(String clientSecret) {
-        this.clientSecret = clientSecret;
     }
 
     public Set<String> getScope() {
@@ -78,26 +78,26 @@ public class OAuth2Client implements ClientDetails {
         return resourceIds;
     }
 
+    public void setResourceIds(Set<String> resourceIds) {
+        this.resourceIds = resourceIds;
+    }
+
     @Override
     public boolean isSecretRequired() {
         return false;
-    }
-
-    public void setResourceIds(Set<String> resourceIds) {
-        this.resourceIds = resourceIds;
     }
 
     public Set<String> getAuthorizedGrantTypes() {
         return authorizedGrantTypes;
     }
 
+    public void setAuthorizedGrantTypes(Set<String> authorizedGrantTypes) {
+        this.authorizedGrantTypes = authorizedGrantTypes;
+    }
+
     @Override
     public Set<String> getRegisteredRedirectUri() {
         return null;
-    }
-
-    public void setAuthorizedGrantTypes(Set<String> authorizedGrantTypes) {
-        this.authorizedGrantTypes = authorizedGrantTypes;
     }
 
     public Set<String> getRegisteredRedirectUris() {
@@ -128,13 +128,13 @@ public class OAuth2Client implements ClientDetails {
         return refreshTokenValiditySeconds;
     }
 
+    public void setRefreshTokenValiditySeconds(Integer refreshTokenValiditySeconds) {
+        this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
+    }
+
     @Override
     public boolean isAutoApprove(String scope) {
         return false;
-    }
-
-    public void setRefreshTokenValiditySeconds(Integer refreshTokenValiditySeconds) {
-        this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
     }
 
     public Map<String, Object> getAdditionalInformation() {

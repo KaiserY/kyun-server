@@ -22,33 +22,11 @@ spring:
   data:
     mongodb:
 #      uri: mongodb://root:12345678@localhost:27017/fs?authSource=admin
-      uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin
-#      uri: mongodb://localhost:27017/fs
+#      uri: mongodb://root:12345678@10.0.23.55:27017/fs?authSource=admin
+      uri: mongodb://localhost:27017/fs
 
 management:
   context-path: /manage
-
-facebook:
-  client:
-    clientId: 233668646673605
-    clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
-    accessTokenUri: https://graph.facebook.com/oauth/access_token
-    userAuthorizationUri: https://www.facebook.com/dialog/oauth
-    tokenName: oauth_token
-    authenticationScheme: query
-    clientAuthenticationScheme: form
-  resource:
-    userInfoUri: https://graph.facebook.com/me
-
-github:
-  client:
-    clientId: 0f8d3b52ea282956aff9
-    clientSecret: aede2d690559cd6829d2087321fb33c8c5e9e5dc
-    accessTokenUri: https://github.com/login/oauth/access_token
-    userAuthorizationUri: https://github.com/login/oauth/authorize
-    clientAuthenticationScheme: form
-  resource:
-    userInfoUri: https://api.github.com/user
 
 logging:
   level:

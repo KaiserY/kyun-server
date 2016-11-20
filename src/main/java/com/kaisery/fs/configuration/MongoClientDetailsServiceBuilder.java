@@ -1,6 +1,5 @@
 package com.kaisery.fs.configuration;
 
-import com.kaisery.fs.entity.Authority;
 import com.kaisery.fs.entity.OAuth2Client;
 import com.kaisery.fs.repository.OAuth2ClientRepository;
 import com.kaisery.fs.service.MongoClientDetailsService;
@@ -19,7 +18,7 @@ public class MongoClientDetailsServiceBuilder extends InMemoryClientDetailsServi
 
         OAuth2Client oAuth2Client = new OAuth2Client();
 
-        oAuth2Client.setClientId(value.getClientId());
+        oAuth2Client.setClientId(clientId);
         oAuth2Client.setClientSecret(value.getClientSecret());
         oAuth2Client.setRefreshTokenValiditySeconds(value.getRefreshTokenValiditySeconds());
         oAuth2Client.setAccessTokenValiditySeconds(value.getAccessTokenValiditySeconds());

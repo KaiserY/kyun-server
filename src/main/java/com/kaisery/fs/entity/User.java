@@ -1,16 +1,18 @@
 package com.kaisery.fs.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
 @Document
-public class User {
+public class User implements UserDetails {
 
     @Id
     private String id;
@@ -22,10 +24,6 @@ public class User {
 
     private Set<Authority> authorities = Collections.emptySet();
 
-    private String token;
-
-    private Long space;
-
     private LocalDateTime createdTime;
 
     public String getId() {
@@ -36,14 +34,24 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
@@ -52,35 +60,32 @@ public class User {
         this.password = password;
     }
 
-    public Set<Authority> getAuthorities() {
-        return authorities;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getToken() {
-        return token;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public Long getSpace() {
-        return space;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setSpace(Long space) {
-        this.space = space;
-    }
-
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
